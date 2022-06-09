@@ -7,10 +7,14 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}
 
 function connect(dbname){
     return new Promise((resolve, reject) => {
-        MongoClient.connect(url, options, (err, client) => {
+        MongoClient.connect("mongodb://localhost", options, (err, client) => {
             if (err) throw (err);
             console.log("database connected");
             resolve(client.db(dbname));
