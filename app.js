@@ -39,6 +39,19 @@ function connect(dbname){
         res.send("ok");
     })
 
+    app.get("/addstamp", async (req, res) => {
+        if(!req.query.long || !req.query.lat){
+            res.send("longitude and latitude are required");
+            return;
+        }
+
+        var data = {long : req.query.long, lat : req.query.lat}
+
+        await conn.collection("gpsstamps").insertOne(data);
+
+        res.send("ok")
+    })
+
     app.listen(port, () => console.log(`App listening at ${port}`))
 
 })()
