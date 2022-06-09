@@ -32,7 +32,7 @@ function connect(dbname){
             return;
         }
         
-        var data = {long : req.query.long, lat : req.query.lat}
+        var data = {long : req.query.long, lat : req.query.lat, timestamp : new Date().getTime()}
 
         await conn.collection("busstops").insertOne(data);
 
