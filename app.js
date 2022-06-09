@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const MongoClient = require("mongodb").MongoClient;
-
+const port = 3000
 const app = express()
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,8 +29,8 @@ function connect(dbname){
         await db.collection("busstops").insetOne(data);
 
         res.send("ok");
-
-
-        
     })
+
+    app.listen(port, () => console.log(`App listening at ${port}`))
+
 })
