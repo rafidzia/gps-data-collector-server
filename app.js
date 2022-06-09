@@ -24,13 +24,17 @@ function connect(dbname){
 
 
 (async () => {
-    const db = await connect("testlocation");
+    var conn = await connect("test");
 
     app.get("/addstop", async (req, res) => {
+        if(!req.query.long || !req.query.lat){
+            res.send("longitude and latitude are required");
+            return;
+        }
         
         var data = {long : req.query.long, lat : req.query.lat}
 
-        await db.collection("busstops").insetOne(data);
+        await conn.collection("busstops").insertOne(data);
 
         res.send("ok");
     })
