@@ -33,4 +33,4 @@ function connect(dbname){
 
     app.listen(port, () => console.log(`App listening at ${port}`))
 
-})
+})()
