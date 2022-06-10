@@ -45,12 +45,12 @@ function connect(dbname){
             return;
         }
 
-        var data = {long : req.query.long, lat : req.query.lat, corridor : req.query.corridor, timestamp : new Date().getTime()}
+        var data = {long : req.query.long, lat : req.query.lat, corridor : Number(req.query.corridor), timestamp : new Date().getTime()}
 
-        await conn.collection("gpsstamps").insertOne(data);
+        await conn.collection("gpsstamps").insertOne(data); 
 
         res.send("ok")
-    })
+    })  
 
     app.listen(port, () => console.log(`App listening at ${port}`))
 
