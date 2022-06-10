@@ -40,12 +40,12 @@ function connect(dbname){
     })
 
     app.get("/addstamp", async (req, res) => {
-        if(!req.query.long || !req.query.lat){
+        if(!req.query.long || !req.query.lat || !req.query.corridor){
             res.send("longitude and latitude are required");
             return;
         }
 
-        var data = {long : req.query.long, lat : req.query.lat, timestamp : new Date().getTime()}
+        var data = {long : req.query.long, lat : req.query.lat, corridor : req.query.corridor, timestamp : new Date().getTime()}
 
         await conn.collection("gpsstamps").insertOne(data);
 
