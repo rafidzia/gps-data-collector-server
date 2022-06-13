@@ -14,7 +14,7 @@ const options = {
 
 function connect(dbname){
     return new Promise((resolve, reject) => {
-        MongoClient.connect("mongodb://localhost:27017", options, (err, client) => {
+        MongoClient.connect("mongodb://127.0.0.1:2701", options, (err, client) => {
             if (err) throw (err);
             console.log("database connected");
             resolve(client.db(dbname));
