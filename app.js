@@ -27,12 +27,12 @@ function connect(dbname){
     var conn = await connect("test");
 
     app.get("/addstop", async (req, res) => {
-        if(!req.query.long || !req.query.lat){
+        if(!req.query.long || !req.query.lat || !req.query.corridor){
             res.send("longitude and latitude are required");
             return;
         }
         
-        var data = {long : req.query.long, lat : req.query.lat, timestamp : new Date().getTime()}
+        var data = {long : req.query.long, lat : req.query.lat, corridor : Number(req.query.corridor), timestamp : new Date().getTime()}
 
         await conn.collection("busstops").insertOne(data);
 
